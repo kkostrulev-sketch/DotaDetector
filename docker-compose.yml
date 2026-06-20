@@ -1,0 +1,25 @@
+services:
+  drone-detector:
+    build: .
+    container_name: DOTADetector
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./weights:/app/weights:ro
+      - ./data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped
+
+  gradio-ui:
+    build: .
+    container_name: DOTADetectorGradio
+    ports:
+      - "7860:7860"
+    command: python service/gradio_app.py
+    volumes:
+      - ./weights:/app/weights:ro
+      - ./data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped

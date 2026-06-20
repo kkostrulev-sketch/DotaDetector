@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOTA Detector</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">YOLOv8 OBB · DOTAv1</p>
+        <h1>Детекция объектов на аэрофотоснимках</h1>
+        <p class="subtitle">
+          Загрузите изображение с дрона и получите список найденных объектов
+          с визуализацией bounding boxes.
+        </p>
+      </div>
+      <div id="healthStatus" class="status-pill">Проверка сервиса...</div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Загрузка изображения</h2>
+        <div id="dropzone" class="dropzone">
+          <div class="drop-icon">+</div>
+          <p><strong>Перетащите изображение</strong> или нажмите для выбора</p>
+          <p class="hint">PNG, JPG, WEBP</p>
+        </div>
+        <input id="fileInput" type="file" accept="image/*" hidden>
+
+        <div id="previewBlock" class="preview hidden">
+          <img id="previewImage" alt="Превью загруженного изображения">
+          <p id="fileName" class="file-name"></p>
+        </div>
+
+        <label class="slider-label" for="confidenceRange">
+          Порог уверенности: <span id="confidenceValue">0.25</span>
+        </label>
+        <input id="confidenceRange" type="range" min="0.05" max="0.95" step="0.05" value="0.25">
+
+        <button id="detectBtn" class="primary-btn" disabled>Найти объекты</button>
+        <div id="errorBox" class="error hidden"></div>
+      </section>
+
+      <section class="card">
+        <h2>Результат</h2>
+        <div class="metrics">
+          <div>
+            <span>Объектов</span>
+            <strong id="detCount">0</strong>
+          </div>
+          <div>
+            <span>Задержка</span>
+            <strong id="latency">—</strong>
+          </div>
+          <div>
+            <span>Размер</span>
+            <strong id="imageSize">—</strong>
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          Результат появится после обработки изображения.
+        </div>
+        <div id="resultImageWrap" class="result-image-wrap hidden">
+          <img id="resultImage" alt="Результат детекции">
+        </div>
+
+        <ul id="detectionsList" class="detections-list"></ul>
+      </section>
+
+      <section class="card history-card">
+        <div class="history-header">
+          <h2>История и статистика</h2>
+          <button id="refreshHistoryBtn" class="ghost-btn">Обновить</button>
+        </div>
+
+        <div class="stats">
+          <div>
+            <span>Всего запросов</span>
+            <strong id="statTotal">0</strong>
+          </div>
+          <div>
+            <span>Средняя задержка</span>
+            <strong id="statLatency">0 мс</strong>
+          </div>
+          <div>
+            <span>Среднее число объектов</span>
+            <strong id="statDetections">0</strong>
+          </div>
+        </div>
+
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

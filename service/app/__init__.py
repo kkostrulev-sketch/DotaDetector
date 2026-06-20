@@ -1,0 +1,1 @@
+"""Drone object detection inference service."""
