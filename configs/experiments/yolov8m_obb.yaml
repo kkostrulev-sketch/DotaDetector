@@ -1,0 +1,13 @@
+name: yolov8m_obb
+description: "YOLOv8m-OBB — средняя модель для сравнения скорости и качества"
+train:
+  model: yolov8m-obb.pt
+  data: DOTAv1.yaml
+  epochs: 50
+  imgsz: 1024
+  batch: 4
+  device: auto
+  project: runs/train
+  patience: 20
+  optimizer: auto
+  lr0: 0.01

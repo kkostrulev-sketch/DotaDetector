@@ -1,0 +1,13 @@
+name: yolo11n_obb
+description: "YOLO11n-OBB — лёгкая edge-модель нового поколения"
+train:
+  model: yolo11n-obb.pt
+  data: DOTAv1.yaml
+  epochs: 50
+  imgsz: 1024
+  batch: 8
+  device: auto
+  project: runs/train
+  patience: 20
+  optimizer: auto
+  lr0: 0.01

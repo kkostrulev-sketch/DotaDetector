@@ -1,0 +1,13 @@
+name: rtdetr_l
+description: "RT-DETR-L — transformer-детектор для сравнения с YOLO"
+train:
+  model: rtdetr-l.pt
+  data: DOTAv1.yaml
+  epochs: 50
+  imgsz: 1024
+  batch: 4
+  device: auto
+  project: runs/train
+  patience: 20
+  optimizer: AdamW
+  lr0: 0.0001

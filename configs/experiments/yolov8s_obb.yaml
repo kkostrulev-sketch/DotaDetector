@@ -1,0 +1,13 @@
+name: yolov8s_obb
+description: "YOLOv8s-OBB — больше параметров, выше точность"
+train:
+  model: yolov8s-obb.pt
+  data: DOTAv1.yaml
+  epochs: 50
+  imgsz: 1024
+  batch: 6
+  device: auto
+  project: runs/train
+  patience: 20
+  optimizer: auto
+  lr0: 0.01

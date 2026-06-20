@@ -1,0 +1,13 @@
+name: yolov8n_obb
+description: "Baseline YOLOv8n-OBB на DOTAv1"
+train:
+  model: yolov8n-obb.pt
+  data: DOTAv1.yaml
+  epochs: 50
+  imgsz: 1024
+  batch: 8
+  device: auto
+  project: runs/train
+  patience: 20
+  optimizer: auto
+  lr0: 0.01
